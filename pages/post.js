@@ -1,6 +1,23 @@
 import { withRouter } from 'next/router'
 import Layout from '../components/MyLayout';
 import Markdown from 'react-markdown'
+import fetch from 'isomorphic-unfetch' // 网络请求库
+// withRouter将注入Next.js路由器作为属性，
+// 可以过去路由器的query对象
+
+/**
+ * styled-jsx
+ * 样式应该放在模板字符串中风格jsx作为babel插件。
+ * 它将解析所有CSS并在构建过程中应用它。
+ * （我们的样式可以在没有任何开销时间的情况下应用）
+ * 它还支持在styled-jsx中设置约束。
+ * 将来，您将能够在styled-jsx中使用任何动态变量。
+ * 这就是CSS需要进入模板字符串的原因。（{``}）
+ * */
+
+/**
+ * Global Styles: 全局样式
+ * */
 
 const Content = withRouter((props) => (
     <Layout>
@@ -46,6 +63,7 @@ const Post = (props) => (
         <img src={props.show.image.medium}/>
     </Layout>
 );
+// getInitialProps异步函数完成网络请求
 Post.getInitialProps = async function (context) {
     const { id } = context.query;
     // 请求网络数据
