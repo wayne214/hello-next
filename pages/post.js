@@ -64,6 +64,8 @@ const Post = (props) => (
     </Layout>
 );
 // getInitialProps异步函数完成网络请求
+// 接收的对象属性有：pathname, query,asPath,req, res, jsonPageRes, err
+
 Post.getInitialProps = async function (context) {
     const { id } = context.query;
     // 请求网络数据
@@ -71,7 +73,7 @@ Post.getInitialProps = async function (context) {
     const show = await res.json()
 
     console.log(`Fetched show: ${show.name}`)
-
+    // 返回普通对象Object,而不是Date, Map, Set等数据类型
     return { show }
 }
 
